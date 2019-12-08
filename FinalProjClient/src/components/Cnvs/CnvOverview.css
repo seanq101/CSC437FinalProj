@@ -1,0 +1,15 @@
+.list-group-item {
+    line-height: 30px;
+}
+
+.padded {
+    padding-bottom: 10px
+}
+
+.right-text {
+    text-align: right
+}
+
+.favicon {
+    margin: .5rem;
+}
