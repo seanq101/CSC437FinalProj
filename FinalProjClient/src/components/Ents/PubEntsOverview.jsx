@@ -24,7 +24,7 @@ export default class PubEntsOverview extends Component {
    modalDismiss = (result) => {
       if (result.status === "Ok") {
          result.newEnt['ownerId'] = this.props.Prss.id
-         result.newEnt['name'] = this.props.Prss.firstName + ' ' + 
+         result.newEnt['userName'] = this.props.Prss.firstName + ' ' + 
           this.props.Prss.firstName;
          console.log('in overview', result.newEnt)
          this.newEnt(result.newEnt);

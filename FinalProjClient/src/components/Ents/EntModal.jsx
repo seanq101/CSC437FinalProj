@@ -34,7 +34,7 @@ export default class EntModal extends Component {
          loc: '',
          pub: 0,
          whenSurfed: 0,
-         name: ''
+         userName: ''
       }
       this.handleChange = this.handleChange.bind(this);
    }
@@ -86,7 +86,7 @@ export default class EntModal extends Component {
          pub,
          whenSurfed,
          picURL,
-         name
+         userName
       } = this.state;
 
       const newEnt = {
@@ -99,7 +99,7 @@ export default class EntModal extends Component {
          pub,
          whenSurfed,
          picURL,
-         name
+         userName
       };
       console.log("props: ", this.props);
       newEnt.picURL = newEnt.picURL === undefined ? null : newEnt.picURL;
