@@ -30,7 +30,8 @@ create table Entry (
    loc varchar(80) not null,
    pub int not null,
    whenSurfed datetime(3) not null,
-   picURL varchar(500)
+   picURL varchar(500),
+   userName varchar(80)
 );
 
 create table Message (

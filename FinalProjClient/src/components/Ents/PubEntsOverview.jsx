@@ -81,7 +81,7 @@ export default class PubEntsOverview extends Component {
                whenSurfed={ent.whenSurfed}
                picURL={ent.picURL}
                id={ent.id}
-               name={ent.name}
+               name={ent.userName}
                showControls={ent.ownerId === this.props.Prss.id || 
                 this.props.Prss.role === 1}
                onPubPage={1}

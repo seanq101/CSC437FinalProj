@@ -25,7 +25,7 @@ export default class MyEntsOverview extends Component {
       if (result.status === "Ok") {
          result.newEnt['ownerId'] = this.props.Prss.id
          result.newEnt['userName'] = this.props.Prss.firstName + ' ' + 
-          this.props.Prss.firstName;
+          this.props.Prss.lastName;
          console.log('in overview', result.newEnt)
          this.newEnt(result.newEnt);
       }

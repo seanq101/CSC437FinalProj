@@ -9,6 +9,7 @@ export default class EntItem extends Component {
    constructor(props){
       
       super(props);
+      console.log("item's props",this.props)
       this.state= {
          isHidden: true
       }

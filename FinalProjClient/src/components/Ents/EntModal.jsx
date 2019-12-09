@@ -47,7 +47,7 @@ export default class EntModal extends Component {
       else {
          switch (ev.target.type) {
          case 'checkbox':
-            if (ev.target.id === "makePublic"){
+            if (ev.target.id === "pub"){
                if (ev.target.checked)
                   newState[ev.target.id] = 1;
                else
@@ -177,7 +177,7 @@ export default class EntModal extends Component {
 
                       <br></br>
 
-                     <Form.Check  id="makePublic"
+                     <Form.Check  id="pub"
                       value={this.state.pub} onChange={this.handleChange}
                       label="Do you want to make this entry public?"/>
 
