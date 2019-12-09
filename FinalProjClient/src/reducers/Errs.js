@@ -6,6 +6,7 @@ export default function Errs(state = [], action) {
    case 'DEL_CNV_ERR':
    case 'LOAD_MSGS_ERR':
    case 'ADD_MSG_ERR':
+   case 'ADD_ENT_ERR':
    console.log("heres the deets",JSON.stringify(action.details));
       return state.concat(action.details);
    case 'CLEAR_ERRS':

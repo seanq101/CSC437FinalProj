@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.app-styling {
+  background-color: #d8cba3;
+}
+
+.btn-primary {
+  background-color: #9cb7df !important;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #9cb7df !important;
+}
+
+.list-group-item {
+  background-color : #9CB7B3 !important;
+}

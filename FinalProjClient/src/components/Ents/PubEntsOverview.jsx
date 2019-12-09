@@ -91,7 +91,7 @@ export default class PubEntsOverview extends Component {
 
       return (
          <section className="container">
-            <h1>My Journal Entries</h1>
+            <h1>Public Posts</h1>
 
             <ListGroup className="padded">
                {entries}
