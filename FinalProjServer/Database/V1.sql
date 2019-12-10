@@ -32,17 +32,20 @@ create table Entry (
    whenSurfed datetime(3) not null,
    picURL varchar(500),
    userName varchar(80),
+   boardId int,
    constraint FKMessage_boardId foreign key (boardId) references Board(id)
     on delete cascade
 );
 
 create table Board (
    id int auto_increment primary key,
-   ownerId int,
+   prId int,
    bName varchar(80) not null,
    heightFT int not null,
    heightIN int not null,
-   picURL varchar(500) not null
+   picURL varchar(500),
+   constraint FKMessage_prId foreign key (prId) references Person(id)
+    on delete cascade
 );
 
 create table Message (

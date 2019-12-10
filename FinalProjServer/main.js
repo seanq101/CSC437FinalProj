@@ -61,6 +61,7 @@ app.use('/Ssns', require('./Routes/Account/Ssns.js'));
 app.use('/Cnvs', require('./Routes/Conversation/Cnvs.js'));
 app.use('/Msgs', require('./Routes/Conversation/Msgs.js'));
 app.use('/Entry', require('./Routes/Entry/Entry.js'));
+app.use('/Board', require('./Routes/Board/Board.js'));
 
 // Special debugging route for /DB DELETE.  Clears all table contents
 //resets all auto_increment keys to start at 1, and reinserts one admin user.

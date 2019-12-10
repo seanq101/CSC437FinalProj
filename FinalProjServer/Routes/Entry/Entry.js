@@ -23,9 +23,7 @@ router.get('/', function(req, res) {
             }
       }, 
       function(entries, fields, cb) {
-         for (var i = 0; i < entries.length; i++) {
-            entries[i].day = new Date(entries[i].day).getTime();
-         }
+
          res.status(200).json(entries);
          cb();
       }], 
@@ -84,6 +82,7 @@ router.post('/', function(req, res) {
           .chain(body.pub === 0 || body.pub === 1, 
            Tags.missingField, ['pub'], cb)
           .chain(body.whenSurfed, Tags.missingField, ['whenSurfed'], cb)
+          .chain(body.boardId, Tags.missingField, ['boardId'], cb)
           .check(body.title, Tags.missingField, ['title'], cb) && 
           vld.chain(body.title.length <= tLen, Tags.badValue, ['title'], cb)
            .chain(body.content.length <= cLen, Tags.badValue, ['content'], cb)
@@ -117,7 +116,7 @@ router.delete('/:entId', function(req, res) {
    function(ents, fields, cb) {
       if (vld.check(ents.length, Tags.notFound, null, cb) &&
           vld.checkPrsOK(parseInt(ents[0].ownerId), cb)) {
-         cnn.chkQry('delete from Conversation where id = ?', [entId], cb);
+         cnn.chkQry('delete from Entry where id = ?', [entId], cb);
       }
          
    }, 
