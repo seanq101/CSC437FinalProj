@@ -108,7 +108,8 @@ class Register extends Component {
                onChange={this.handleChange} required={true}
                />
 
-              <FieldGroup id="passwordTwo" type="password" label="Repeat Password"
+              <FieldGroup id="passwordTwo" type="password" 
+               label="Repeat Password"
                value={this.state.passwordTwo}
                onChange={this.handleChange} required={true}
                help="Repeat your password"

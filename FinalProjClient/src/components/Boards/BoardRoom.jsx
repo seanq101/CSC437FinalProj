@@ -97,14 +97,17 @@ export default class BoardRoom extends Component {
                               {this.state.boardDict[board.id].length}
                            </p>
                            <p>Biggest Wave Ridden: 
-                              {this.state.boardDict[board.id].sort((a, b) => (a.waveHeight > b.waveHeight) ? -1 : 1)[0].waveHeight}
+                              {this.state.boardDict[board.id].sort((a, b) => 
+                              (a.waveHeight > b.waveHeight) ? -1 : 1)
+                              [0].waveHeight}
                            </p>
 
                            <p>
                               Last Recently Used:  
                               {new Intl.DateTimeFormat('us',
                                  {
-                                    year: "numeric", month: "short", day: "numeric",
+                                    year: "numeric", month: "short", 
+                                    day: "numeric",
                                  })
                               .format(new Date(this.state.boardDict[board.id]
                                .sort((a, b) => (a.whenSurfed > b.whenSurfed) ?

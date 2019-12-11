@@ -10,15 +10,6 @@ create table Person (
    unique key(email)
 );
 
-create table Conversation (
-   id int auto_increment primary key,
-   ownerId int,
-   title varchar(80) not null,
-   lastMessage datetime(3),
-   constraint FKMessage_ownerId foreign key (ownerId) references Person(id)
-    on delete cascade,
-   unique key UK_title(title)
-);
 
 create table Entry (
    id int auto_increment primary key,
@@ -47,19 +38,6 @@ create table Board (
    heightIN int not null,
    picURL varchar(500),
    constraint FKMessage_prId foreign key (prId) references Person(id)
-    on delete cascade
-);
-
-create table Message (
-   id int auto_increment primary key,
-   cnvId int not null,
-   prsId int not null,
-   whenMade datetime(3) not null,
-   content varchar(5000) not null,
-   email varchar(100) not null,
-   constraint FKMessage_cnvId foreign key (cnvId) references Conversation(id)
-    on delete cascade,
-   constraint FKMessage_prsId foreign key (prsId) references Person(id)
     on delete cascade
 );
 

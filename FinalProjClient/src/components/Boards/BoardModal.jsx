@@ -50,9 +50,10 @@ export default class BoardModal extends Component {
 
    formValid() {
       let s = this.state;
-
-      return s.bName && s.heightFT && (s.heightIN >= 0 && s.heightIN < 12)
-       && s.picURL.length > 0;
+      let maxIN = 11;
+      let minIN = 0;
+      return s.bName && s.heightFT && (s.heightIN >= minIN && 
+       s.heightIN < maxIN) && s.picURL.length > 0;
    }
 
    close = (result) => {
@@ -84,9 +85,13 @@ export default class BoardModal extends Component {
       var boardOptions = [];
       console.log('modal props', this.props)
       if (this.props.boards && this.props.boards.length > 0){
-         this.props.boards.forEach(board => {boardOptions.push(<option value={board.id}>{board.bName}</option>)});
+         this.props.boards.forEach(
+            board => {
+               boardOptions.push(
+                <option value={board.id}>{board.bName}</option>)});
       }
-      
+      let maxIN = 11;
+      let minIN = 0;
       return (
          <Modal show={this.props.showModal} onHide={() => this.close("Cancel")}>
             <Modal.Header closeButton>
@@ -116,7 +121,8 @@ export default class BoardModal extends Component {
                       onChange={this.handleChange} required={true}
                       />
 
-                     {this.state.heightIN > 11 || this.state.rating < 0 ?
+                     {this.state.heightIN > maxIN || 
+                      this.state.heightIN < minIN ?
                         <Alert variant="warning">
                            Inches must be 0-11
                         </Alert> : ''

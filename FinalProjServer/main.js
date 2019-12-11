@@ -70,13 +70,13 @@ app.delete('/DB', function(req, res) {
    var vld = req.validator;
    
    // Callbacks to clear tables
-   var cbs = ["Conversation", "Message", "Person"].map(
+   var cbs = ["Entry", "Board", "Person"].map(
       table => function(cb) {
          req.cnn.query("delete from " + table, null, cb);
       });
 
    // Callbacks to reset increment bases
-   cbs = cbs.concat(["Conversation", "Message", "Person"].map(
+   cbs = cbs.concat(["Entry", "Board", "Person"].map(
       table => cb => {
          req.cnn.query("alter table " + table + " auto_increment = 1", 
          null, cb);

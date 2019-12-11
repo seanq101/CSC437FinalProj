@@ -1,0 +1,6454 @@
+{
+	"info": {
+		"_postman_id": "c691cb59-4a28-4ee4-97c7-04d591e5d4bf",
+		"name": "CSC437FinalProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1 Nuke",
+			"item": [
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "770b8dba-be19-4654-b2b4-a95df85c127a",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"adm@11.com\", \"password\": \"password\"}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						},
+						"description": "Good Login\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Nuke",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04663fb7-fa38-46af-9636-bf866eec088f",
+								"exec": [
+									"tests['200 response'] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/javascript"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/DB",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"DB"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Ssns",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d7f0d330-93b7-4d4b-b9ef-a96e76b589e2",
+								"exec": [
+									"tests[\"Status code is 401\"] = responseCode.code === 401;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Info w/o Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 401\"] = responseCode.code === 401;",
+									"",
+									"tests[\"Body matches string\"] = responseBody === \"\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/Prss/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"1"
+							]
+						},
+						"description": "no login get info\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "770b8dba-be19-4654-b2b4-a95df85c127a",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"adm@11.com\", \"password\": \"password\"}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						},
+						"description": "Good Login\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All User Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e7c04cc0-0041-4ad4-812c-2cfc79a2029d",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"tests[\"Body has an id\"] = res[0].id && res[0].id === 1;",
+									"tests[\"Body has correct email\"] = res[0].email === \"adm@11.com\";",
+									"tests[\"Body has one response\"] = res.length === 1;",
+									"tests[\"only get id and email\"] = Object.keys(res[0]).length === 2;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/Prss/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								""
+							]
+						},
+						"description": "no login get info\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Person that doesnt exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e7c04cc0-0041-4ad4-812c-2cfc79a2029d",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"tests[\"Body has an id\"] = res[0].tag && res[0].tag === \"notFound\";",
+									"tests[\"Body has no params\"] = Object.keys(res[0]).length === 1;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/Prss/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"3"
+							]
+						},
+						"description": "no login get info\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Change a Person that doesn't exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d6176f56-fa7f-4998-9fbb-5d99702ac2bc",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"tests[\"Body has an id\"] = res[0].tag && res[0].tag === \"notFound\";",
+									"tests[\"Body has no params\"] = Object.keys(res[0]).length === 1;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/javascript"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/Prss/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Person that doesn't exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"tests[\"Body has an id\"] = res[0].tag && res[0].tag === \"notFound\";",
+									"tests[\"Body has null params\"] = Object.keys(res[0]).length === 2;",
+									"tests[\"Body has no params\"] = !res[0].params;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\": \"yeet me\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a User based on bad params",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e7c04cc0-0041-4ad4-812c-2cfc79a2029d",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"",
+									"tests[\"Body has no response\"] = res.length === 0;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/Prss/?email=b",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								""
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "b"
+								}
+							]
+						},
+						"description": "no login get info\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d19d553-d590-4d69-a6ff-cd4a817b6aba",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "2 Registration",
+			"item": [
+				{
+					"name": "Register User A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8005145d-65d0-4d41-867f-6afd26ed56ac",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"UserA@domainA\",\n    \"firstName\": \"FirstA\",\n    \"lastName\" : \"LastA\",\n    \"password\" : \"passwordA\",\n    \"role\"     : 0,\n    \"termsAccepted\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Login as User A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b0679435-8eab-4bc2-bb31-3c70c8cbb829",
+								"exec": [
+									"",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"userA@domainA\", \"password\": \"passwordA\"}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						},
+						"description": "Good Login\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Register User A Duplicate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									"tests[\"Body matches string\"] = responseBody.has(\"dupEmail\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"UserA@domainA\",\n    \"firstName\": \"FirstA\",\n    \"lastName\" : \"LastA\",\n    \"password\" : \"passwordA\",\n    \"role\"     : 0,\n    \"termsAccepted\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register An Admin when logged in as User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "77c0cde8-e208-4aea-81f2-9ed923475ee0",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests['only one object'] = jsonData.length === 1;",
+									"tests[\"forbiddenRole tag\"] = jsonData[0].tag === \"forbiddenRole\";",
+									"tests['nothing else'] = Object.keys(jsonData[0]).length === 1;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"UserB@domainB\",\n    \"firstName\": \"FirstB\",\n    \"lastName\" : \"LastB\",\n    \"password\" : \"passwordB\",\n    \"role\"     : 1,\n    \"termsAccepted\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "Should fail trying to make admin"
+					},
+					"response": []
+				},
+				{
+					"name": "Register User w/o Body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									"tests[\"Body matches string\"] = responseBody.has(\"missingField\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User w/o Body Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									"tests[\"Body matches string\"] = responseBody.has(\"missingField\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "3 Prs Modification",
+			"item": [
+				{
+					"name": "Get Info Without Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 401\"] = responseCode.code === 401;",
+									"",
+									"tests[\"Body matches string\"] = responseBody === \"\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/Prss/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"1"
+							]
+						},
+						"description": "no login get info\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"UserA@domainA\",\n    \"password\" : \"passwordA\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User A Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2c002454-7971-494b-b22d-00d10cd166ea",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"FirstAV1\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove User A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 403\"] = responseCode.code === 403;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/Prss/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"2"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aad16038-80b9-4d5f-ae81-6a3f7ee40f50",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"adm@11.com\", \"password\": \"password\"}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						},
+						"description": "Good Login\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Check New UserA Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Correct Name\"] = jsonData[0].firstName === \"FirstAV1\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Prss/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove User A",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/Prss/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"2"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Check User A Dropped",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									"tests[\"Not Found\"] = responseBody.has(\"notFound\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Prss/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Prss Tests",
+			"item": [
+				{
+					"name": "Get Info Without Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f777841b-5fd5-49c5-a2ad-1d2fbb684530",
+								"exec": [
+									"tests[\"Status code is 401\"] = responseCode.code === 401;",
+									"",
+									"tests[\"Body matches empty string\"] = responseBody === \"\";"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "no login get info\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Register User Sean",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b452c7a-2505-4cad-a444-6359c2c82275",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"seanq1@gmail.com\",\n    \"firstName\": \"Sean\",\n    \"lastName\" : \"Quinn\",\n    \"password\" : \"p1\",\n    \"role\"     : 0,\n    \"termsAccepted\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Bad Login User Sean",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"badlogin tag\"] = jsonData[0].tag === \"badLogin\";",
+									"tests[\"no extra parms in object\"] = Object.keys(jsonData[0]).length === 1;",
+									"tests[\"no extra objects\"] = jsonData.length === 1;",
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"seanq1@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bad Login2 User Sean",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"badlogin tag\"] = jsonData[0].tag === \"badLogin\";",
+									"tests[\"no extra parms in object\"] = Object.keys(jsonData[0]).length === 1;",
+									"tests[\"no extra objects\"] = jsonData.length === 1;",
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"p1\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bad Login3 User Sean",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 500\"] = responseCode.code === 500;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"seanq1@gmail.com\"\n    \"password\": \"p1\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User Sean",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"seanq1@gmail.com\",\n    \"password\": \"p1\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get MY User Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f777841b-5fd5-49c5-a2ad-1d2fbb684530",
+								"exec": [
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"tests[\"Body has an id\"] = res[0].id;",
+									"tests[\"Body has correct email\"] = res[0].email === \"seanq1@gmail.com\";",
+									"tests[\"Body has one response\"] = res.length === 1;",
+									"tests[\"only get id and email\"] = Object.keys(res[0]).length === 2;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"hi\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "no login get info\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Admin's info as User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f777841b-5fd5-49c5-a2ad-1d2fbb684530",
+								"exec": [
+									"tests[\"Status code is 403\"] = responseCode.code === 403;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"hi\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"1"
+							]
+						},
+						"description": "no login get info\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout (when already logged out)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ae20d3d4-eaa1-40fd-9a7f-94180949c1fb",
+								"exec": [
+									"tests[\"Status code is 401\"] = responseCode.code === 401;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User Sean mini me",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "54868659-0166-48fa-9256-f0b60fe6ccc5",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"seanq101@gmail.com\",\n    \"firstName\": \"Sean\",\n    \"lastName\" : \"Quinn\",\n    \"password\" : \"p2\",\n    \"role\"     : 0,\n    \"termsAccepted\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User Sean mini me",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"   postman.setEnvironmentVariable(\"miniMe\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"seanq101@gmail.com\",\n    \"password\": \"p2\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aad16038-80b9-4d5f-ae81-6a3f7ee40f50",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"adm@11.com\", \"password\": \"password\"}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						},
+						"description": "Good Login\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all people's info as Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f777841b-5fd5-49c5-a2ad-1d2fbb684530",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"",
+									"tests[\"Body has correct email\"] = res[0].email === \"adm@11.com\";",
+									"tests[\"Body has three response\"] = res.length === 3;",
+									"tests[\"only get id and email\"] = Object.keys(res[0]).length === 2;",
+									"for (var i = 0; i < res.length; i++){",
+									"    tests['#' + i + 'has correct len'] = Object.keys(res[i]).length === 2;",
+									"    tests['#' + i + 'has an id'] = res[i].id;",
+									"    tests['#' + i + 'has an email'] = res[i].email;",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "no login get info\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout a session that doesnt exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/100",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout a User as Admin Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{miniMe}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{miniMe}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Prs Create Tests",
+			"item": [
+				{
+					"name": "Register Admin when logged out",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b452c7a-2505-4cad-a444-6359c2c82275",
+								"exec": [
+									"tests[\"Status code is 403\"] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests['only one object'] = jsonData.length === 1;",
+									"tests[\"forbiddenRole tag\"] = jsonData[0].tag === \"forbiddenRole\";",
+									"tests['nothing else'] = Object.keys(jsonData[0]).length === 1;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"seanq1@gmail.com\",\n    \"firstName\": \"Sean\",\n    \"lastName\" : \"Quinn\",\n    \"password\" : \"p1\",\n    \"role\"     : 1,\n    \"termsAccepted\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Register Duplicate Sean",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b452c7a-2505-4cad-a444-6359c2c82275",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"tests[\"Body has two response\"] = res.length === 1;",
+									"",
+									"tests[\"Body correct for email tag\"] = res[0].tag === \"dupEmail\";",
+									"tests[\"Body has correct param, maps to null\"] = res[0].params === null;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"seanq1@gmail.com\",\n    \"firstName\": \"Sean\",\n    \"lastName\" : \"Quinn\",\n    \"password\" : \"p1\",\n    \"role\"     : 0,\n    \"termsAccepted\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Register Duplicate Sean No Terms",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b452c7a-2505-4cad-a444-6359c2c82275",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"tests[\"Body has two response\"] = res.length === 1;",
+									"",
+									"tests[\"Body correct for email tag\"] = res[0].tag === \"noTerms\";",
+									"tests[\"Body has no param here\"] = res[0].params === undefined;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"seanq1@gmail.com\",\n    \"firstName\": \"Sean\",\n    \"lastName\" : \"Quinn\",\n    \"password\" : \"p1\",\n    \"role\"     : 0,\n    \"termsAccepted\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Register new User Josh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b452c7a-2505-4cad-a444-6359c2c82275",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Location returned\"] = locURL;",
+									"joshId = locURL[locURL.length - 1]",
+									"pm.environment.set(\"joshID\", joshId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@best.com\",\n    \"firstName\": \"Josh\",\n    \"lastName\" : \"De Best\",\n    \"password\" : \"p3\",\n    \"role\"     : 0,\n    \"termsAccepted\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User Josh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@best.com\",\n    \"password\": \"p3\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Admin when logged in User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b452c7a-2505-4cad-a444-6359c2c82275",
+								"exec": [
+									"tests[\"Status code is 403\"] = responseCode.code === 400;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests['only one object'] = jsonData.length === 1;",
+									"tests[\"forbiddenRole tag\"] = jsonData[0].tag === \"forbiddenRole\";",
+									"tests['nothing else'] = Object.keys(jsonData[0]).length === 1;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"seanq1@gmail.com\",\n    \"firstName\": \"Sean\",\n    \"lastName\" : \"Quinn\",\n    \"password\" : \"p1\",\n    \"role\"     : 1,\n    \"termsAccepted\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aad16038-80b9-4d5f-ae81-6a3f7ee40f50",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"adm@11.com\", \"password\": \"password\"}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						},
+						"description": "Good Login\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Register new admin: dup Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b452c7a-2505-4cad-a444-6359c2c82275",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"tests[\"Body has two response\"] = res.length === 1;",
+									"",
+									"tests[\"Body correct for email tag\"] = res[0].tag === \"dupEmail\";",
+									"tests[\"Body has correct param, maps to null\"] = res[0].params === null;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@best.com\",\n    \"firstName\": \"Josh\",\n    \"lastName\" : \"De Best\",\n    \"password\" : \"\",\n    \"role\"     : 1,\n    \"termsAccepted\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Register new admin no pass terms:false",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b452c7a-2505-4cad-a444-6359c2c82275",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"theId = locURL[locURL.length - 1]",
+									"pm.environment.set(\"lastAdminId\", theId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"a2@best.com\",\n    \"firstName\": \"Josh\",\n    \"lastName\" : \"De Best\",\n    \"password\" : \"\",\n    \"role\"     : 1,\n    \"termsAccepted\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Check New User A Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2dd39849-4612-4228-b60d-4e1f5ce88420",
+								"exec": [
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"tests[\"only get one person back\"] = res.length === 1;",
+									"tests[\"Correct id\"] = res[0].id == pm.environment.get(\"lastAdminId\");",
+									"tests[\"Correct fname\"] = res[0].firstName === \"Josh\";",
+									"tests[\"Correct lname\"] = res[0].lastName === \"De Best\";",
+									"tests[\"Correct email\"] = res[0].email === \"a2@best.com\";",
+									"tests[\"positive date\"] = res[0].whenRegistered >= 0;",
+									"//tests[\"Correct terms\"] = res[0].termsAccepted === false;",
+									"tests[\"is admin\"] = res[0].role === 1;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Prss/{{lastAdminId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"{{lastAdminId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Prs Puts",
+			"item": [
+				{
+					"name": "Login User Josh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@best.com\",\n    \"password\": \"p3\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get MY USer Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f777841b-5fd5-49c5-a2ad-1d2fbb684530",
+								"exec": [
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"tests[\"Body has an id\"] = res[0].id;",
+									"tests[\"Body has correct email\"] = res[0].email === \"j@best.com\";",
+									"tests[\"Body has one response\"] = res.length === 1;",
+									"tests[\"only get id and email\"] = Object.keys(res[0]).length === 2;",
+									"postman.setEnvironmentVariable(\"curId\", res[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"hi\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "no login get info\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Put empty",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"postman.setEnvironmentVariable(\"oId\", parseInt(pm.environment.get(\"curId\")) - 1);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/{{curId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"{{curId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put empty someone else",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 403\"] = responseCode.code === 403;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/{{oId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"{{oId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put with forbidden fields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"tests[\"BAD_REQUEST\"] = responseBody;",
+									"res = JSON.parse(responseBody);",
+									"tests[\"reg tag and terms tag are forbiddenField\"] = (res[0].tag === \"forbiddenField\" && res[1].tag === \"forbiddenField\");",
+									"tests[\"reg parm correct\"] = (res[0].params.length === 1) && res[0].params[0] === \"whenRegistered\";",
+									"tests[\"terms parm correct\"] = (res[1].params.length === 1) && res[1].params[0] === \"termsAccepted\";",
+									"tests[\"badValue tag correct\"] = res[2].tag === \"badValue\";",
+									"tests[\"badValue parms correct\"] = res[2].params && res[2].params.length === 1 && res[2].params[0] === \"role\";",
+									"tests[\"noOldPwd tag correct\"] = res[3].tag === \"noOldPwd\";",
+									"tests[\"noOldPwd parms correct\"] = res[3].params=== null;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"role\": 1,\n\t\"whenRegistered\": 1570759824241,\n\t\"termsAccepted\": false,\n\t\"password\": \"hi\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/{{curId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"{{curId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put with wrong old pass",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"tests[\"BAD_REQUEST\"] = responseBody;",
+									"res = JSON.parse(responseBody);",
+									"tests[\"only one object returned\"] = res.length === 1 && Object.keys(res[0]).length === 2;",
+									"tests[\"badValue tag correct\"] = res[0].tag === \"oldPwdMismatch\";",
+									"tests[\"badValue parms correct\"] = res[0].params === null;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"oldPassword\": \"p2\",\n\t\n    \"password\": \"p2\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/{{curId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"{{curId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put with forbidden fields Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"tests[\"BAD_REQUEST\"] = responseBody;",
+									"res = JSON.parse(responseBody);",
+									"tests[\"reg tag and terms tag are forbiddenField\"] = (res[0].tag === \"forbiddenField\" && res[1].tag === \"forbiddenField\");",
+									"tests[\"reg parm correct\"] = (res[0].params.length === 1) && res[0].params[0] === \"whenRegistered\";",
+									"tests[\"terms parm correct\"] = (res[1].params.length === 1) && res[1].params[0] === \"termsAccepted\";",
+									"tests[\"badValue tag correct\"] = res[2].tag === \"badValue\";",
+									"tests[\"badValue parms correct\"] = res[2].params && res[2].params.length === 1 && res[2].params[0] === \"role\";",
+									"tests[\"noOldPwd tag correct\"] = res[3].tag === \"noOldPwd\";",
+									"tests[\"noOldPwd parms correct\"] = res[3].params=== null;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"role\": 1,\n\t\"whenRegistered\": 1570759824241,\n\t\"termsAccepted\": false,\n\t\"password\": \"hi\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/{{curId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"{{curId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put empty password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"res = JSON.parse(responseBody);",
+									"tests[\"only one object returned\"] = res.length === 1 && Object.keys(res[0]).length === 2;",
+									"tests[\"badValue tag correct\"] = res[0].tag === \"badValue\";",
+									"tests[\"badValue parms correct\"] = res[0].params && res[0].params.length === 1 && res[0].params[0] === \"password\";"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/{{curId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"{{curId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put with Pw, empty old",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"res = JSON.parse(responseBody);",
+									"tests[\"only one object returned\"] = res.length === 1 && Object.keys(res[0]).length === 2;",
+									"tests[\"badValue tag correct\"] = res[0].tag === \"noOldPwd\";",
+									"tests[\"badValue parms correct\"] = !res[0].params;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"p3\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/{{curId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"{{curId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put with Pw, \"\" old",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"res = JSON.parse(responseBody);",
+									"tests[\"only one object returned\"] = res.length === 1 && Object.keys(res[0]).length === 2;",
+									"tests[\"badValue tag correct\"] = res[0].tag === \"noOldPwd\";",
+									"tests[\"badValue parms correct\"] = !res[0].params;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"p3\",\n\t\"oldPassword\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/{{curId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"{{curId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put with Pw same as old pw",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"p3\",\n\t\"oldPassword\": \"p3\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/{{curId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"{{curId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put with Pw same as bad pw",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"res = JSON.parse(responseBody);",
+									"tests[\"only one object returned\"] = res.length === 1 && Object.keys(res[0]).length === 2;",
+									"tests[\"badValue tag correct\"] = res[0].tag === \"oldPwdMismatch\";",
+									"tests[\"badValue parms correct\"] = !res[0].params;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"p5\",\n\t\"oldPassword\": \"p4\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/{{curId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"{{curId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dba981d7-39d5-4919-942d-a236825bc12d",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"adm@11.com\", \"password\": \"password\"}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						},
+						"description": "Good Login\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Admin change someone else passwd",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\" : \"Mod by admin\",\n\t\"password\" : \"p1\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin change someone else passwd (empty)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"res = JSON.parse(responseBody);",
+									"tests[\"only one object returned\"] = res.length === 1 && Object.keys(res[0]).length === 2;",
+									"tests[\"badValue tag correct\"] = res[0].tag === \"badValue\";",
+									"tests[\"badValue parms correct\"] = res[0].params && res[0].params.length === 1 && res[0].params[0] === \"password\";"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\" : \"Mod by admin\",\n\t\"password\" : null\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin change someone else role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4896be39-a69c-4a98-92a5-9094525cc965",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"role\" : 1\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Del Prs",
+			"item": [
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try to del - not logged in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 401\"] = responseCode.code === 401;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Prss/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User Josh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@best.com\",\n    \"password\": \"p3\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try to del someone else as User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 403\"] = responseCode.code === 403;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Prss/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try to del - logged in as User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 403\"] = responseCode.code === 403;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Prss/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aad16038-80b9-4d5f-ae81-6a3f7ee40f50",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"adm@11.com\", \"password\": \"password\"}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						},
+						"description": "Good Login\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete someone else",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d6176f56-fa7f-4998-9fbb-5d99702ac2bc",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/javascript"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/Prss/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Get Ssns",
+			"item": [
+				{
+					"name": "Login User Josh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@best.com\",\n    \"password\": \"p3\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ssns as User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eca9781a-28eb-49d0-8b43-67991d645852",
+								"exec": [
+									"tests[\"Status code is 403\"] = responseCode.code === 403;",
+									"",
+									"",
+									"//var res = JSON.parse(responseBody);",
+									"tests[\"Nothing returned\"] = !responseBody;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get MY Ssns as User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eca9781a-28eb-49d0-8b43-67991d645852",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"tests[\"Correct object response\"] = Object.keys(res).length === 3 && res.id && res.prsId && res.loginTime;",
+									"//tests[\"Correct res id\"] = res.prsId == pm.environment.get(\"curLogin\"); ",
+									"tests[\"Correct res time\"] = res.loginTime > 0;",
+									"",
+									"pm.environment.set(\"prevLogin\", pm.environment.get(\"curLogin\") - 1);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get other Ssns as User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eca9781a-28eb-49d0-8b43-67991d645852",
+								"exec": [
+									"tests[\"Status code is 403\"] = responseCode.code === 403;",
+									"",
+									"",
+									"tests[\"no response body\"] = !responseBody;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Ssns/{{prevLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{prevLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aad16038-80b9-4d5f-ae81-6a3f7ee40f50",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"adm@11.com\", \"password\": \"password\"}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						},
+						"description": "Good Login\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ssns as admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d7f0d330-93b7-4d4b-b9ef-a96e76b589e2",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"// tests[\"res objects formatted properly\"] ",
+									"for (var i = 0; i < res.length; i++){",
+									"    if(i === 0){",
+									"        var prevId = res[i].id;",
+									"    }else{",
+									"        if (res[i].id <= prevId){",
+									"            tests[\"ids in order\"] = false;",
+									"        }",
+									"        prevId = res[i].id;",
+									"        if(i === res.length - 1){",
+									"            tests[\"ids in order\"] = true;",
+									"        }",
+									"    }",
+									"    ",
+									"    tests[\"#\" + i + \" ele has good loginTime\"] = res[i].loginTime > 0;",
+									"    tests[\"#\" + i + \" ele has right data back\"] = Object.keys(res[i]).length === 3 && res[i].prsId;",
+									"    if (res[i].prsId !== 1){",
+									"        pm.environment.set(\"otherPersonsSSn\", res[i].id);",
+									"    }",
+									"",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get other Person's ssn as admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d7f0d330-93b7-4d4b-b9ef-a96e76b589e2",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"// tests[\"res objects formatted properly\"] ",
+									"tests[\"Correct object response\"] = Object.keys(res).length === 3 && res.id && res.prsId && res.loginTime;",
+									"tests[\"Correct res time\"] = res.loginTime > 0;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Ssns/{{otherPersonsSSn}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{otherPersonsSSn}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Entry Post Tests",
+			"item": [
+				{
+					"name": "Get Entry (empty)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bee0353-a3c8-4a2c-a17d-272e7de80f91",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"// tests[\"res objects formatted properly\"] ",
+									"tests[\"res is empty\"] = res.length === 0;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Entry  Logged Out",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bee0353-a3c8-4a2c-a17d-272e7de80f91",
+								"exec": [
+									"tests[\"Status code is 403\"] = responseCode.code === 401;",
+									"",
+									"// tests[\"res objects formatted properly\"] ",
+									"tests[\"res is empty\"] = !responseBody"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User Josh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@best.com\",\n    \"password\": \"p3\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry No Title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'title';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry Empty Title",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'title';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry No Content",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['content params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'content';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t \"title\": \"shaka brahhh\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry Empty Content",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['content params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'content';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t \"title\": \"shaka brahhh\",\n\t \"content\" : \"\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry Content too long",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['badValue tag present'] = res[0].tag && res[0].tag === 'badValue';",
+									"tests['content params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'content';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t \"title\": \"shaka brahhh\",\n\t \"content\" : \"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Sed lectus. Donec mollis hendrerit risus. Phasellus nec sem in justo pellentesque facilisis. Etiam imperdiet imperdiet orci. Nunc nec neque. Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Maecenas malesuada. Praesent congue erat at massa. Sed cursus turpis vitae tortor. Donec posuere vulputate arcu. Phasellus accumsan cursus velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci. Phasellus consectetuer vestibulum elit. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Vestibulum fringilla pede sit amet augue. In turpis. Pellentesque posuere. Praesent turpis. Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus. Donec elit libero, sodales nec, volutpat a, suscipit non, turpis. Nullam sagittis. Suspendisse pulvinar, augue ac venenatis condimentum, sem libero volutpat nibh, nec pellentesque velit pede quis nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id purus. Ut varius tincidunt libero. Phasellus dolor. Maecenas vestibulum mollis diam. Pellentesque ut neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. In ac felis quis tortor malesuada pretium. Pellentesque auctor neque nec urna. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Aenean viverra rhoncus pede. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut non enim eleifend felis pretium feugiat. Vivamus quis mi. Phasellus a est. Phasellus magna. In hac habitasse platea dictumst. Curabitur at lacus ac velit ornare lobortis. Curabitur a felis in nunc fringilla tristique. Morbi mattis ullamcorper velit. Phasellus gravida semper nisi. Nullam vel sem. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Sed hendrerit. Morbi ac felis. Nunc egestas, augue at pellentesque laoreet, felis eros vehicula leo, at malesuada velit leo quis pede. Donec interdum, metus et hendrerit aliquet, dolor diam sagittis ligula, eget egestas libero turpis vel mi. Nunc nulla. Fusce risus nisl, viverra et, tempor et, pretium in, sapien. Donec venenatis vulputate lorem. Morbi nec metus. Phasellus blandit leo ut odio. Maecenas ullamcorper, dui et placerat feugiat, eros pede varius nisi, condimentum viverra felis nunc et lorem. Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis. In auctor lobortis lacus. Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna. Vestibulum ullamcorper mauris at ligula. Fusce fermentum. Nullam cursus lacinia erat. Praesent blandit laoreet nibh. Fusce convallis metus id felis luctus adipiscing. Pellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est. Quisque id mi. Ut tincidunt tincidunt erat. Etiam feugiat lorem non metus. Vestibulum dapibus nunc ac augue. Curabitur vestibulum aliquam leo. Praesent egestas neque eu enim. In hac habitasse platea dictumst. Fusce a quam. Etiam ut purus mattis mauris sodales aliquam. Curabitur nisi. Quisque malesuada placerat nisl. Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Vestibulum facilisis, purus nec pulvinar iaculis, ligula mi congue nunc, vitae euismod ligula urna in dolor. Mauris sollicitudin fermentum libero. Praesent nonummy mi in odio. Nunc interdum lacus sit amet orci. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi. Morbi mollis tellus ac sapien. Phasellus volutpat, metus eget egestas mollis, lacus lacus blandit dui, id egestas quam mauris ut lacus. Fusce vel dui. Sed in libero ut nibh placerat accumsan. Proin faucibus arcu quis ante. In consectetuer turpis ut velit. Nulla sit amet est. Praesent metus tellus, elementum eu, semper a, adipiscing nec, purus. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo. Suspendisse feugiat. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi. Praesent nec nisl a purus blandit viverra. Praesent ac massa at ligula laoreet iaculis. Nulla neque dolor, sagittis eget, iaculis quis, molestie non, velit. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula. Fusce pharetra convallis urna. Quisque ut nisi. Donec mi odio, faucibus at, scelerisque quis, convallis\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry No waveHeight",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'waveHeight';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"shaka brahhhh\",\n    \"content\" : \"test\",\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-12-10\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry Empty waveHeight",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'waveHeight';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"shaka brahhhh\",\n    \"content\" : \"test\",\n    \"waveHeight\" : \"\",\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-12-10\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry No loc",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'loc';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"surfs up brah\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"rating\" : 5,\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry Empty loc",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'loc';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"surfs up brah\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"\",\n    \"rating\" : 5,\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry loc too long",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['badValue tag present'] = res[0].tag && res[0].tag === 'badValue';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'loc';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"surfs up brah\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"rating\" : 5,\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry No rating",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'rating';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"shaka brahhh\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry Empty rating",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'rating';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"shaka brahh\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : \"\",\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry No pub",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'pub';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"surfs up brah\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry Empty pub",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'pub';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"surfs up brah\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : \"\",\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry invalid pub",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'pub';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"surfs up brah\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : \"3\",\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry No whenSurfed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'whenSurfed';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"surfs up brah\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : 0\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry Empty whenSurfed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'whenSurfed';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"surfs up brah\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : 0,\n    \"whenSurfed\" : \"\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Too Long Title (> 80)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'badValue';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'title';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"content\" : \"thicc swells\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-01-01\"\n}\n"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry POST 80 a's title (good)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"res is empty\"] = !responseBody",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : 0,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Board POST Good",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"bName\" : \"shredder\",\n   \"heightFT\" : 420,\n   \"heightIN\" : 69,\n   \"picURL\" : \"foobar.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Board",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry POST w/ Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"locURL = locURL && locURL.split('/');",
+									"theId = locURL[locURL.length - 1]",
+									"pm.environment.set(\"lastEntryId\", theId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"wicked sesh brah\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : 1,\n    \"boardId\" : 1,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET/:entID (generic)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bee0353-a3c8-4a2c-a17d-272e7de80f91",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"// tests[\"res objects formatted properly\"] ",
+									"tests[\"Correct object response\"] = Object.keys(res).length === 12;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Entry/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET/ (generic) Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bee0353-a3c8-4a2c-a17d-272e7de80f91",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET/:entID not logged in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bee0353-a3c8-4a2c-a17d-272e7de80f91",
+								"exec": [
+									"tests[\"Status code is 401\"] = responseCode.code === 401;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Entry/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Del Entry while logged out",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 401\"] = responseCode.code === 401;",
+									"tests['no response'] = !responseBody;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Entry/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aad16038-80b9-4d5f-ae81-6a3f7ee40f50",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"adm@11.com\", \"password\": \"password\"}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						},
+						"description": "Good Login\n"
+					},
+					"response": []
+				},
+				{
+					"name": "DEL Entry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests['no response'] = !responseBody;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Entry/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL Entry (already deleted)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['1 res object'] = res.length === 1;",
+									"tests['correct tag'] = res[0].tag && res[0].tag === 'notFound';",
+									"tests['correct parms'] = !res[0].params;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Entry/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Entry Del Tests",
+			"item": [
+				{
+					"name": "Login User Josh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@best.com\",\n    \"password\": \"p3\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Del Other Entry as User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 403\"] = responseCode.code === 403;",
+									"tests['no response'] = !responseBody;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Entry/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Del x2 OWN Cnv as User(deleted now)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['1 res object'] = res.length === 1;",
+									"tests['correct tag'] = res[0].tag && res[0].tag === 'notFound';",
+									"tests['correct parms'] = !res[0].params;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Entry/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Entry POST (good)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"res is empty\"] = !responseBody",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"shaka brotherrr\",\n    \"content\" : \"test\",\n    \"waveHeight\" : 4,\n    \"loc\" : \"Pismo\",\n    \"rating\" : 5,\n    \"pub\" : 1,\n    \"boardId\" : 1,\n    \"whenSurfed\" : \"2019-01-01\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Entry",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aad16038-80b9-4d5f-ae81-6a3f7ee40f50",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"adm@11.com\", \"password\": \"password\"}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						},
+						"description": "Good Login\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Del Entry as Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests['no response'] = !responseBody;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Entry/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Entry",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Board Post Tests",
+			"item": [
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aad16038-80b9-4d5f-ae81-6a3f7ee40f50",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"adm@11.com\", \"password\": \"password\"}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						},
+						"description": "Good Login\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Board (empty)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bee0353-a3c8-4a2c-a17d-272e7de80f91",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"// tests[\"res objects formatted properly\"] ",
+									"tests[\"res len is 6\"] = Object.keys(res).length === 1;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Board",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Entry  Logged Out",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bee0353-a3c8-4a2c-a17d-272e7de80f91",
+								"exec": [
+									"tests[\"Status code is 403\"] = responseCode.code === 401;",
+									"",
+									"// tests[\"res objects formatted properly\"] ",
+									"tests[\"res is empty\"] = !responseBody"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Board",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User Josh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@best.com\",\n    \"password\": \"p3\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Board POST no bName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'bName';"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"heightFT\" : 420,\n   \"heightIN\" : 69,\n   \"picURL\" : \"foobar.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Board",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Board POST Invalid bName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'bName';"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"bName\" : \"\",\n   \"heightFT\" : 420,\n   \"heightIN\" : 69,\n   \"picURL\" : \"foobar.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Board",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Board POST no heightFT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'heightFT';"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"bName\" : \"test\",\n   \"heightIN\" : 4,\n   \"picURL\" : \"foobar.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Board",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Board POST no heightIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['missingField tag present'] = res[0].tag && res[0].tag === 'missingField';",
+									"tests['title params present'] = res[0].params && res[0].params.length === 1 && res[0].params[0] === 'heightIN';"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"bName\" : \"test\",\n   \"heightFT\" : 420,\n   \"picURL\" : \"foobar.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Board",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Board POST no picURL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"bName\" : \"test\",\n   \"heightFT\" : 3,\n   \"heightIN\" : 34,\n   \"picURL\" : \"\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Board",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Board POST bName too long",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['badVAlue tag present'] = res[0].tag && res[0].tag === 'badValue';",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"bName\" : \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\n   \"heightFT\" : 33,\n   \"heightIN\" : 33,\n   \"picURL\" : \"foobar.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Board",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Board POST Good",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b5974f-722b-4531-8b7f-13cbdfa28868",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"bName\" : \"Simmons\",\n   \"heightFT\" : 12,\n   \"heightIN\" : 144,\n   \"picURL\" : \"foobar.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Board",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET/:boardID (generic)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bee0353-a3c8-4a2c-a17d-272e7de80f91",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"// tests[\"res objects formatted properly\"] ",
+									"tests[\"Correct object response\"] = Object.keys(res).length === 6;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Board/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET/:boardID invalid BoardID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bee0353-a3c8-4a2c-a17d-272e7de80f91",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"tests['one error msg'] = res.length === 1;",
+									"",
+									"tests['notFound tag present'] = res[0].tag && res[0].tag === 'notFound';",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Board/6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET/:boardID not logged in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bee0353-a3c8-4a2c-a17d-272e7de80f91",
+								"exec": [
+									"tests[\"Status code is 401\"] = responseCode.code === 401;",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Board/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aad16038-80b9-4d5f-ae81-6a3f7ee40f50",
+								"exec": [
+									"var locURL = postman.getResponseHeader(\"Location\")",
+									"var cookie = postman.getResponseCookie(\"CHSAuth\");",
+									"",
+									"locURL = locURL && locURL.split('/');",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Location returned\"] = locURL;",
+									"tests[\"Cookie Returned\"] = cookie && cookie.value !== undefined;",
+									"",
+									"if (tests[\"Location returned\"]) {",
+									"   postman.setEnvironmentVariable(\"curLogin\", locURL[locURL.length - 1]);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"adm@11.com\", \"password\": \"password\"}"
+						},
+						"url": {
+							"raw": "{{url}}/Ssns",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns"
+							]
+						},
+						"description": "Good Login\n"
+					},
+					"response": []
+				},
+				{
+					"name": "GET/ (generic) logged in as Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bee0353-a3c8-4a2c-a17d-272e7de80f91",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var res = JSON.parse(responseBody);",
+									"// tests[\"res objects formatted properly\"] ",
+									"tests[\"Correct object response\"] = Object.keys(res).length === 3;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/Board",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL Board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests['no response'] = !responseBody;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Board/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DEL Board (already deleted)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 400\"] = responseCode.code === 400;",
+									"var res = JSON.parse(responseBody);",
+									"tests['1 res object'] = res.length === 1;",
+									"tests['correct tag'] = res[0].tag && res[0].tag === 'notFound';",
+									"tests['correct parms'] = !res[0].params;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Board/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Board",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Misc Tests",
+			"item": [
+				{
+					"name": "Register new User temp, extra info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b452c7a-2505-4cad-a444-6359c2c82275",
+								"exec": [
+									"tests[\"Status code is 500\"] = responseCode.code === 500;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"temp@a.com\",\n    \"firstName\": \"Temp\",\n    \"lastName\" : \"Person\",\n    \"password\" : \"temp\",\n    \"role\"     : 0,\n    \"termsAccepted\": true,\n    \"hello\": world\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Register new User temp no name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b452c7a-2505-4cad-a444-6359c2c82275",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"temp1@a.com\",\n    \"lastName\" : \"Person\",\n    \"password\" : \"temp\",\n    \"role\"     : 0,\n    \"termsAccepted\": true\n\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Register new User no terms (as admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b452c7a-2505-4cad-a444-6359c2c82275",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests['no res'] = !responseBody;",
+									"// var res = JSON.parse(responseBody);",
+									"",
+									"// tests['only one res obj'] = res.length === 1;",
+									"// tests['tag in res'] = res[0].tag && res[0].tag === 'noTerms';",
+									"// tests['res obj correct'] = Object.keys(res[0]).length === 1; ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"temp2@a.com\",\n    \"lastName\" : \"Person\",\n    \"password\" : \"temp\",\n    \"role\"     : 0\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Register new User null terms (as admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b452c7a-2505-4cad-a444-6359c2c82275",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests['no res'] = !responseBody;",
+									"// var res = JSON.parse(responseBody);",
+									"",
+									"// tests['only one res obj'] = res.length === 1;",
+									"// tests['tag in res'] = res[0].tag && res[0].tag === 'noTerms';",
+									"// tests['res obj correct'] = Object.keys(res[0]).length === 1; ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"temp3@a.com\",\n    \"lastName\" : \"Person\",\n    \"password\" : \"temp\",\n    \"role\"     : 0,\n    \"termsAccepted\": null\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Register new User false terms (as admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5b452c7a-2505-4cad-a444-6359c2c82275",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests['no res'] = !responseBody;",
+									"// var res = JSON.parse(responseBody);",
+									"",
+									"// tests['only one res obj'] = res.length === 1;",
+									"// tests['tag in res'] = res[0].tag && res[0].tag === 'noTerms';",
+									"// tests['res obj correct'] = Object.keys(res[0]).length === 1; ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"temp4@a.com\",\n    \"lastName\" : \"Person\",\n    \"password\" : \"temp\",\n    \"role\"     : 0,\n    \"termsAccepted\": false\n}"
+						},
+						"url": {
+							"raw": "{{url}}/Prss",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Prss"
+							]
+						},
+						"description": "\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "83a54337-7dba-4a76-9475-8c6f872e7ed7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/Ssns/{{curLogin}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"Ssns",
+								"{{curLogin}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

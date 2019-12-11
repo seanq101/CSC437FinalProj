@@ -34,16 +34,16 @@ class Main extends Component {
                      <Nav variant="pills" className="justify-content-left">
                         {this.signedIn() ?
                            [
-                              <LinkContainer to='/myEnts' key={3}>
+                              <LinkContainer to='/myEnts' key={-1}>
                                  <Nav.Link>My Surf Journal</Nav.Link>
                               </LinkContainer>,
-                              <LinkContainer to='/pubEnts' key={4}>
+                              <LinkContainer to='/pubEnts' key={-2}>
                                  <Nav.Link>Public Posts</Nav.Link>
                               </LinkContainer>, 
-                              <LinkContainer to='/boardroom' key={5}>
+                              <LinkContainer to='/boardroom' key={-3}>
                                  <Nav.Link>My Board Room</Nav.Link>
                               </LinkContainer>,
-                              <LinkContainer to='/register' key={2}>
+                              <LinkContainer to='/register' key={-4}>
                                  <Nav.Link>Register</Nav.Link>
                               </LinkContainer>
                            ]

@@ -34,7 +34,6 @@ export default class MyEntsOverview extends Component {
          result.newEnt['ownerId'] = this.props.Prss.id
          result.newEnt['userName'] = this.props.Prss.firstName + ' ' + 
           this.props.Prss.lastName;
-         console.log('in overview', result.newEnt)
          this.newEnt(result.newEnt);
       }
       this.setState({ showModal: false });
@@ -54,7 +53,6 @@ export default class MyEntsOverview extends Component {
          this.props.delEnt(this.state.delEnt.id, 
             () => this.setState({showConfirmation: false, delEnt: null }));
       } else {
-         console.log(res)
          this.setState({ showConfirmation: false, delEnt: null });
       }
       
@@ -69,9 +67,7 @@ export default class MyEntsOverview extends Component {
    render() {
       console.log("Rerendering My Ents Overview ", this.props);
       var entries = [];
-      console.log(this.props.Ents)
       this.props.Ents.forEach(ent => {
-         //if (!this.props.userOnly || this.props.Prss.id === cnv.ownerId)
             entries.push(<EntItem
                key={ent.id}
                ownerId={ent.ownerId}

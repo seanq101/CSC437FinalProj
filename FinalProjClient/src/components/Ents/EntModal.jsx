@@ -72,9 +72,10 @@ export default class EntModal extends Component {
 
    formValid() {
       let s = this.state;
-
+      let minRating = 0;
+      let maxRating = 5;
       return s.title && s.waveHeight && s.content && s.rating && s.loc
-       && s.whenSurfed && (s.rating >= 0 && s.rating <= 5) ;
+       && s.whenSurfed && (s.rating >= minRating && s.rating <= maxRating) ;
    }
 
    close = (result) => {
@@ -128,9 +129,12 @@ export default class EntModal extends Component {
       var boardOptions = [];
       console.log('modal props', this.props)
       if (this.props.boards && this.props.boards.length > 0){
-         this.props.boards.forEach(board => {boardOptions.push(<option value={board.id}>{board.bName}</option>)});
+         this.props.boards.forEach(board => 
+            {boardOptions.push(
+             <option value={board.id}>{board.bName}</option>)});
       }
-      
+      let minRating = 0;
+      let maxRating = 5;
       return (
          <Modal show={this.props.showModal} onHide={() => this.close("Cancel")}>
             <Modal.Header closeButton>
@@ -165,7 +169,8 @@ export default class EntModal extends Component {
                       onChange={this.handleChange} required={true}
                       />
 
-                     {this.state.rating > 5 || this.state.rating < 0 ?
+                     {this.state.rating > maxRating || 
+                      this.state.rating < minRating ?
                         <Alert variant="warning">
                            Rating must be 0-5
                         </Alert> : ''
@@ -186,7 +191,8 @@ export default class EntModal extends Component {
 
                      <div className="form-group">
                         <label htmlFor="select1">Which Board Did You Use</label>
-                        <select value={this.state.value} id="boardId" onChange={this.handleChange} className="form-control"> 
+                        <select value={this.state.value} id="boardId" 
+                         onChange={this.handleChange} className="form-control"> 
                            {boardOptions}
                         </select>
                      </div>

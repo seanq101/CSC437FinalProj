@@ -31,8 +31,7 @@ export default class EntItem extends Component {
                   </h2></Col>
             <Col sm={4}>{new Intl.DateTimeFormat('us',
                   {
-                     year: "numeric", month: "short", day: "numeric",
-                     hour: "2-digit", minute: "2-digit", second: "2-digit"
+                     year: "numeric", month: "short", day: "numeric"
                   })
                   .format(new Date(this.props.whenSurfed))}
                </Col>
@@ -52,7 +51,8 @@ export default class EntItem extends Component {
             <Row hidden={this.state.isHidden}>
                <Col sm={4}>
                   {this.props.picURL ? 
-                     <img alt={this.props.title} className="surfing-img" src={this.props.picURL}></img> 
+                     <img alt={this.props.title} className="surfing-img" 
+                      src={this.props.picURL}></img> 
                      : 
                      ''
                   }
