@@ -135,6 +135,13 @@ export function getMyEnts(userId) {
     .catch(err => {throw err})
 }
 
+
+export function getMyBoards(userId) {
+    return get("Board" + "?userId=" + userId)
+    .then((res) => res.json())
+    .catch(err => {throw err})
+}
+
 export function getPublicEnts() {
     return get("Entry" + "?pub=1")
     .then((res) => res.json())

@@ -1,0 +1,13 @@
+.heading {
+   text-align: center;
+}
+
+.carousel-description {
+   color: black !important;
+}
+
+.carousel-pic {
+   width: 500px;
+   height: 700px;
+   margin: auto;
+}

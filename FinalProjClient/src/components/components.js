@@ -9,3 +9,4 @@ export {default as MsgModal} from './Cnvs/MsgModal';
 export {default as MyEntsOverview} from './Ents/MyEntsOverview';
 export {default as PubEntsOverview} from './Ents/PubEntsOverview';
 export {default as EntItem} from './Ents/EntItem';
+export {default as BoardRoom} from './Boards/BoardRoom';

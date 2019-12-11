@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Register, SignIn, CnvOverview, CnvDetail, ConfDialog, MyEntsOverview, 
-   PubEntsOverview} 
+   PubEntsOverview, BoardRoom} 
 from '../components'
 import {Route, Redirect, Switch } from 'react-router-dom';
 import {Navbar, Nav} from 'react-bootstrap';
@@ -48,9 +48,10 @@ class Main extends Component {
                               </LinkContainer>,
                               <LinkContainer to='/pubEnts' key={4}>
                                  <Nav.Link>Public Posts</Nav.Link>
+                              </LinkContainer>, 
+                              <LinkContainer to='/boardroom' key={5}>
+                                 <Nav.Link>My Board Room</Nav.Link>
                               </LinkContainer>
-                              
-                              
                            ]
                            :
                            [
@@ -107,6 +108,8 @@ class Main extends Component {
                 <ProtectedRoute path={`/CnvDetail/`} component={CnvDetail}
                 userOnly={true} {...this.props}/>
                 <ProtectedRoute path={`/pubEnts/`} component={PubEntsOverview}
+                userOnly={true} {...this.props}/>
+                <ProtectedRoute path={`/boardroom/`} component={BoardRoom}
                 userOnly={true} {...this.props}/>
                />
                

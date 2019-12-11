@@ -111,6 +111,17 @@ export function getPublicEntries(cb) {
    return (dispatch, prevState) => {
       api.getPublicEnts()
       .then(res => dispatch({type: 'GET_ENTS', ents : res}))
-      .then(res => {if (cb) cb(res);});
+      .then(res => {if (cb) cb(res);})
+      .catch(err => dispatch({type: 'GET_ENT_ERR', details: err}));
    }; 
 }
+
+export function getBoards(prsId, cb) {
+   return (dispatch, prevState) => {
+      api.getMyBoards(prsId)
+      .then(res => dispatch({type: 'GET_BOARDS', boards : res}))
+      .then(res => {if (cb) cb(res);})
+      .catch(err => dispatch({type: 'GET_BOARDS_ERR', details: err}));
+   }; 
+}
+
