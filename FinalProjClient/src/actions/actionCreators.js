@@ -32,14 +32,6 @@ export function register(data, cb) {
    };
 }
 
-export function delCnv(id, cb) {
-   return (dispatch, prevState) => {
-      api.delCnv(id)
-      .then(() => {dispatch({ type: 'DEL_CNV', cnv: id })})
-      .then(() => {if (cb) cb();});
-   };
-}
-
 export function getPerson(prsId, cb) {
    return (dispatch, prevState) => {
       api.getPerson(prsId)
@@ -95,3 +87,11 @@ export function getBoards(prsId, cb) {
    }; 
 }
 
+export function delEnt(id, cb) {
+   return (dispatch, prevState) => {
+      api.delEnt(id)
+      .then(() => {dispatch({ type: 'DEL_ENT', ent: id })})
+      .then(() => {if (cb) cb();})
+      .catch(err => dispatch({type: 'DEL_ENT_ERR', details: err}));
+   };
+}

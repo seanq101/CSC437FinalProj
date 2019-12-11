@@ -40,23 +40,24 @@ export default class PubEntsOverview extends Component {
    }
 
    openConfirmation = (cnv) => {
-      this.setState({ delCnv: cnv, showConfirmation: true })
+      this.setState({ delEnt: cnv, showConfirmation: true })
    }
 
    closeConfirmation = (res) => {
       if(res === "Yes"){
-         this.props.delCnv(this.state.delCnv.id);
+         this.props.delEnt(this.state.delEnt.id,
+            () => this.setState({showConfirmation: false, delEnt: null }));
          //this.props.updateCnvs();
-         this.setState({showConfirmation: false, delCnv: null });
+         
       } else {
          console.log(res)
-         this.setState({ showConfirmation: false, delCnv: null });
+         this.setState({ showConfirmation: false, delEnt: null });
       }
       
    }
 
    openEdit = (cnv) => {
-      this.setState({ delCnv: cnv, showConfirmation: true })
+      this.setState({ delEnt: cnv, showConfirmation: true })
    }
 
    
@@ -84,7 +85,7 @@ export default class PubEntsOverview extends Component {
                 this.props.Prss.role === 1}
                onPubPage={1}
                onDelete={() => this.openConfirmation(ent)}
-               onEdit={() => this.openModal(ent)} />);
+               />);
       });
 
       return (
@@ -100,9 +101,9 @@ export default class PubEntsOverview extends Component {
             
             <ConfDialog
                show={this.state.showConfirmation}
-               title="Delete Conversation"
-               body={`Are you sure you want to delete the Conversation
-           '${this.state.delCnv ? this.state.delCnv.title : ''}'`}
+               title="Delete Entry"
+               body={`Are you sure you want to delete the Entry
+           '${this.state.delEnt ? this.state.delEnt.title : ''}'`}
                buttons={['Yes', 'Abort']}
                onClose={this.closeConfirmation} />
          </section>

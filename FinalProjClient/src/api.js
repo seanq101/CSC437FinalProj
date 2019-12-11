@@ -141,8 +141,8 @@ export function getPublicEnts() {
     .catch(err => {throw err})
 }
 
-export function delCnv(id) {
-    return del(`Cnvs/${id}`)
+export function delEnt(id) {
+    return del(`Entry/${id}`)
     .catch(err => {throw err});
 }
 

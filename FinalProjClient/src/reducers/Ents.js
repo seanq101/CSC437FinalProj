@@ -5,6 +5,9 @@ export default function Ents(state = [], action) {
          return action.ents;
       case 'ADD_ENT':
          return state.concat([action.ent]);
+      case 'DEL_ENT':
+         console.log(state.filter(curEnt => curEnt.id !== action.ent))
+         return state.filter(curEnt => curEnt.id !== action.ent)
       default:
          return state;
    }

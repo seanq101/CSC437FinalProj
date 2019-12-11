@@ -106,7 +106,7 @@ export default class EntModal extends Component {
          boardId
       };
 
-      if (newEnt.boardId === 0 && this.props.boards === undefined)
+      if (newEnt.boardId === 0 && this.props.boards.length === 0)
          newEnt.boardId = null;
       else
          newEnt.boardId = this.props.boards[0].id;

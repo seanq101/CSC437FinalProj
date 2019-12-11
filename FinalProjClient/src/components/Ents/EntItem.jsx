@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ListGroupItem, Col, Row} from 'react-bootstrap';
+import {ListGroupItem, Col, Row, Button} from 'react-bootstrap';
 import StarRatings from 'react-star-ratings';
 import './Ent.css';
 
@@ -18,6 +18,8 @@ export default class EntItem extends Component {
    toggleHidden = () => {
       this.setState({isHidden: !this.state.isHidden})
    }
+
+   
 
    render() {
       return (
@@ -66,6 +68,13 @@ export default class EntItem extends Component {
                   
                   {this.props.onPubPage ? 
                   <p>Submitted By: {this.props.name}</p>: ''}
+
+                  {this.props.showControls ? 
+                     <Button variant="primary" onClick=
+                     {() => this.props.onDelete()}>Delete</Button>
+                     : 
+                     ''
+                  }
                </Col>
 
             </Row>

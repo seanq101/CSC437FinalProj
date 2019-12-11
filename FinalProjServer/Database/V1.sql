@@ -34,6 +34,8 @@ create table Entry (
    userName varchar(80),
    boardId int,
    constraint FKMessage_boardId foreign key (boardId) references Board(id)
+    on delete cascade,
+    constraint FKMessage_ownerId foreign key (ownerId) references Person(id)
     on delete cascade
 );
 
