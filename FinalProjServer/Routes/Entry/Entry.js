@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
              [ssn.prsId], cb);
          else {
             console.log('got a public')
-            cnn.chkQry('select * from Entry where pub = 1 OR ownerId = ?',
+            cnn.chkQry('select * from Entry where pub = 1',
              [ssn.prsId], cb);
             }
       }, 
