@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, Form, FormGroup, Alert, FormControl, FormControlLabel} from 'react-bootstrap';
+import { Modal, Button, Form, FormGroup, Alert, FormControl } from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -106,7 +106,9 @@ export default class EntModal extends Component {
          boardId
       };
 
-      if (newEnt.boardId === 0)
+      if (newEnt.boardId === 0 && this.props.boards === undefined)
+         newEnt.boardId = null;
+      else
          newEnt.boardId = this.props.boards[0].id;
       console.log("props: ", this.props);
       newEnt.picURL = newEnt.picURL === undefined ? null : newEnt.picURL;
@@ -201,24 +203,6 @@ export default class EntModal extends Component {
                       value={this.state.pub} onChange={this.handleChange}
                       label="Do you want to make this entry public?"/>
 
-                  {/* <FormGroup controlId="formBasicText">
-                     <Form.Label>{this.props.forMsg? '' : 
-                     "Conversation Title"}</Form.Label>
-                     <FormControl
-                        type="text"
-                        value={this.state.cnvTitle}
-                        placeholder="Enter text"
-                        onChange={this.handleChange}
-                     />
-                     <FormControl.Feedback />
-                     {
-                        !(this.state.cnvTitle) && 
-                        <Form.Text className="text-muted">
-                           Title is required
-                        </Form.Text>
-                     }
-                     
-                  </FormGroup> */}
                </form>
             </Modal.Body>
             <Modal.Footer>

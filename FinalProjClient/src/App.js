@@ -11,9 +11,7 @@ function mapStateToProps(state) {
    console.log(Object.keys(state.Prss).length !== 0 );
    return {
       Prss: state.Prss,
-      Cnvs: state.Cnvs,
       Errs: state.Errs,
-      Msgs: state.Msgs,
       Ents: state.Ents,
       Boards: state.Boards
    };

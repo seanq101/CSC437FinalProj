@@ -123,47 +123,27 @@ export function register(user) {
 /**
  * @returns {Promise} json parsed data
  */
-export function getCnvs(userId) {
-    return get("Cnvs" + (userId ? "?owner="+userId : ""))
-    .then((res) => res.json())
-    .catch(err => {throw err})
-}
-
 export function getMyEnts() {
     return get("Entry")
     .then((res) => res.json())
     .catch(err => {throw err})
 }
 
-
 export function getMyBoards(userId) {
-    return get("Board" + "?userId=" + userId)
+    return get("Board?userId=" + userId)
     .then((res) => res.json())
     .catch(err => {throw err})
 }
 
 export function getPublicEnts() {
-    return get("Entry" + "?pub=1")
+    return get("Entry?pub=1")
     .then((res) => res.json())
-    .catch(err => {throw err})
-}
-
-export function putCnv(id, body) {
-    return put(`Cnvs/${id}`, body)
     .catch(err => {throw err})
 }
 
 export function delCnv(id) {
     return del(`Cnvs/${id}`)
     .catch(err => {throw err});
-}
-
-export function postCnv(body) {
-    return post('Cnvs', body).then(rsp => {
-      let location = rsp.headers.get("Location").split('/');
-      return get(`Cnvs/${location[location.length-1]}`);
-   })
-   .then(rsp => rsp.json());
 }
 
 export function postEnt(body) {
@@ -174,22 +154,12 @@ export function postEnt(body) {
    .then(rsp => rsp.json());
 }
 
-export function getMsgs(cnvId) {
-    return get(`Cnvs/${cnvId}/Msgs`).then((res) => res.json())
-    .catch(err => []);
-}
-
-export function postMsg (body, cnvId) {
-    console.log("new message", body)
-    return post(`Cnvs/${cnvId}/Msgs`, body).then(rsp => {
-       console.log("res was ", rsp)
-       let location = rsp.headers.get("Location").split('/');
-       return get(`Msgs/${location[location.length-1]}`);
+export function postBoard(body) {
+    return post('Board', body).then(rsp => {
+      let location = rsp.headers.get("Location").split('/');
+      return get(`Board/${location[location.length-1]}`);
    })
-   .then(rsp => rsp.json())
-   .catch(err => {
-       throw err
-    });
+   .then(rsp => rsp.json());
 }
 
 export function getPerson(prsId) {

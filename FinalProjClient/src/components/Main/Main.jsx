@@ -34,15 +34,6 @@ class Main extends Component {
                      <Nav variant="pills" className="justify-content-left">
                         {this.signedIn() ?
                            [
-                              <LinkContainer to='/allCnvs' key={0}>
-                                 <Nav.Link> All Conversations</Nav.Link>
-                              </LinkContainer>,
-                              <LinkContainer to='/myCnvs' key={1}>
-                                 <Nav.Link>My Conversations</Nav.Link>
-                              </LinkContainer>,
-                              <LinkContainer to='/register' key={2}>
-                                 <Nav.Link>Register</Nav.Link>
-                              </LinkContainer>,
                               <LinkContainer to='/myEnts' key={3}>
                                  <Nav.Link>My Surf Journal</Nav.Link>
                               </LinkContainer>,
@@ -51,6 +42,9 @@ class Main extends Component {
                               </LinkContainer>, 
                               <LinkContainer to='/boardroom' key={5}>
                                  <Nav.Link>My Board Room</Nav.Link>
+                              </LinkContainer>,
+                              <LinkContainer to='/register' key={2}>
+                                 <Nav.Link>Register</Nav.Link>
                               </LinkContainer>
                            ]
                            :
@@ -94,15 +88,11 @@ class Main extends Component {
             <Switch>
                <Route exact path='/'
                   component={() => Object.keys(this.props.Prss).length !== 0 ? 
-                   <Redirect to="/allCnvs" /> : <Redirect to="/signin" />} />
+                   <Redirect to="/myEnts" /> : <Redirect to="/signin" />} />
                <Route path='/signin' 
                 render={() => <SignIn {...this.props} />} />
                <Route path='/register'
                 render={() => <Register {...this.props} />} />
-               <ProtectedRoute path='/allCnvs' component={CnvOverview}
-                {...this.props}/>
-               <ProtectedRoute path='/myCnvs' component={CnvOverview}
-                userOnly={true} {...this.props}/>
                 <ProtectedRoute path='/myEnts' component={MyEntsOverview}
                 userOnly={true} {...this.props}/>
                 <ProtectedRoute path={`/CnvDetail/`} component={CnvDetail}

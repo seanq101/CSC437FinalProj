@@ -32,53 +32,11 @@ export function register(data, cb) {
    };
 }
 
-export function updateCnvs(userId, cb) {
-   return (dispatch, prevState) => {
-      api.getCnvs(userId)
-      .then((cnvs) => dispatch({ type: 'UPDATE_CNVS', cnvs }))
-      .then(() => {if (cb) cb();});
-   };
-}
-
-export function addCnv(newCnv, cb) {
-   return (dispatch, prevState) => {
-      api.postCnv(newCnv)
-      .then(cnvRsp => dispatch({type: 'ADD_CNV', cnv: cnvRsp}))
-      .then(() => {if (cb) cb();});
-   };
-}
-
-export function modCnv(cnvId, title, cb) {
-   return (dispatch, prevState) => {
-      api.putCnv(cnvId, {title})
-      .then(() => {if (cb) cb();})
-      .catch(err => dispatch({type:'ADD_CNV_ERR', details: err}));
-   };
-}
-
 export function delCnv(id, cb) {
    return (dispatch, prevState) => {
       api.delCnv(id)
       .then(() => {dispatch({ type: 'DEL_CNV', cnv: id })})
       .then(() => {if (cb) cb();});
-   };
-}
-
-export function updateMsgs(cnvId, cb) {
-   return (dispatch, prevState) => {
-      api.getMsgs(cnvId)
-      .then(res => dispatch({type: 'GET_MSGS', msgs: res}))
-      .then(() => {if (cb) cb();})
-      .catch(err => dispatch({type: 'LOAD_MSGS_ERR', details: err}));
-   };
-}
-
-export function addMsg(newMsg, cnvId, cb) {
-   return (dispatch, prevState) => {
-      api.postMsg(newMsg, cnvId)
-      .then(res => dispatch({type: 'ADD_MSG', msg: res}))
-      .then(() => {if (cb) cb();})
-      .catch(err => dispatch({type: 'ADD_MSG_ERR', details: err}));
    };
 }
 
@@ -106,6 +64,18 @@ export function addEntry(newEnt, cb) {
       .catch(err => dispatch({type: 'ADD_ENT_ERR', details: err}));
    };
 }
+
+
+export function addBoard(newB, cb) {
+   console.log('in action creators', newB)
+   return (dispatch, prevState) => {
+      api.postBoard(newB)
+      .then(res => dispatch({type: 'ADD_BOARD', board: res}))
+      .then(() => {if (cb) cb();})
+      .catch(err => dispatch({type: 'ADD_BOARD_ERR', details: err}));
+   };
+}
+
 
 export function getPublicEntries(cb) {
    return (dispatch, prevState) => {

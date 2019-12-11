@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {ListGroup, ListGroupItem, Col, Row, Button, Carousel} from 'react-bootstrap';
+import { Button, Carousel} from 'react-bootstrap';
 import {ConfDialog} from '../components';
 import './BoardRoom.css'
+import BoardModal from './BoardModal'
 
 export default class BoardRoom extends Component {
    constructor(props) {
@@ -39,21 +39,15 @@ export default class BoardRoom extends Component {
 
    modalDismiss = (result) => {
       if (result.status === "Ok") {
-         if (this.state.editCnv)
-            this.modCnv(result);
-         else
-            this.newCnv(result);
+         result.newBoard['prId'] = this.props.Prss.id
+         console.log('in overview', result.newBoard)
+         this.newBoard(result.newBoard);
       }
-      this.setState({ showModal: false, editCnv: null });
+      this.setState({ showModal: false });
    }
 
-   modCnv(result) {
-      this.props.modCnv(this.state.editCnv.id, result.title);
-      this.props.updateCnvs();
-   }
-
-   newCnv(result) {
-      this.props.addCnv({ title: result.title });
+   newBoard = (newB) => {
+      this.props.addBoard(newB);
    }
 
    openConfirmation = (cnv) => {
@@ -127,17 +121,21 @@ export default class BoardRoom extends Component {
       return (
          <section className="container">
             <h1 className="heading">My Boards</h1>
+            {boards.length ? 
+               <Carousel>
+                  {boards}
+               </Carousel>
+             : <p>You do not have any boards yet</p>
+            }
 
-            <Carousel>
-               {boards}
-            </Carousel>
-
-            
-            <Button variant="primary" onClick=
-               {() => this.openModal()}>Add A New Board</Button>
-            {/* Modal for creating and change cnv */}
-            
-            
+            <div className="heading">
+               <Button variant="primary" onClick=
+                  {() => this.openModal()}>Add A New Board</Button>
+            </div>
+                        
+            <BoardModal
+            showModal={this.state.showModal}
+            onDismiss={this.modalDismiss} />
             <ConfDialog
                show={this.state.showConfirmation}
                title="Delete Conversation"
@@ -148,43 +146,4 @@ export default class BoardRoom extends Component {
          </section>
       )
    }
-}
-
-// A Cnv list item
-const CnvItem = function (props) {
-   return (
-      <ListGroupItem>
-         <Row> 
-            <Col sm={4} className="float-left">
-               <Link to={"/CnvDetail/" + props.id}>{props.title}</Link>
-            </Col>
-            {
-               props.lastMessage ? 
-                  <Col sm={4} 
-                   className="float-left">{new Intl.DateTimeFormat('us',
-                  {
-                     year: "numeric", month: "short", day: "numeric",
-                     hour: "2-digit", minute: "2-digit", second: "2-digit"
-                  })
-                  .format(new Date(props.lastMessage))}
-                  </Col> 
-                  : 
-                  <Col sm={4}> N/A </Col>
-            }
-            
-            
-            {props.showControls ?
-               <Col sm={4} className="float-right right-text">
-                  <Button size="sm" onClick={props.onDelete} 
-                   className="favicon">
-                     <span className="fa fa-trash"/>
-                  </Button>
-                  <Button size="sm" onClick={props.onEdit} className="favicon">
-                     <span className="fa fa-edit"/>
-                  </Button>
-               </Col>
-               : ''}
-         </Row>
-      </ListGroupItem>
-   )
 }

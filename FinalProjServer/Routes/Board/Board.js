@@ -72,9 +72,9 @@ router.post('/', function(req, res) {
    function(cb) {
       if (vld.chain(body.bName, Tags.missingField, ['bName'], cb)
           .chain(body.heightFT || body.heightFT >= 0, Tags.missingField, 
-            ['content'], cb)
+            ['heightFT'], cb)
           .check(body.heightIN || body.heightIN >= 0, Tags.missingField, 
-            ['rating'], cb)
+            ['heightIN'], cb)
           &&
           vld.check(body.bName.length <= nLen, Tags.badValue, ['title'], cb)) {
             cnn.chkQry("insert into Board set ?", body, cb);

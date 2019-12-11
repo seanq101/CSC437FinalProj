@@ -82,7 +82,7 @@ router.post('/', function(req, res) {
           .chain(body.pub === 0 || body.pub === 1, 
            Tags.missingField, ['pub'], cb)
           .chain(body.whenSurfed, Tags.missingField, ['whenSurfed'], cb)
-          .chain(body.boardId, Tags.missingField, ['boardId'], cb)
+          .chain(body.boardId === null || body.boardId > 0, Tags.missingField, ['boardId'], cb)
           .check(body.title, Tags.missingField, ['title'], cb) && 
           vld.chain(body.title.length <= tLen, Tags.badValue, ['title'], cb)
            .chain(body.content.length <= cLen, Tags.badValue, ['content'], cb)
