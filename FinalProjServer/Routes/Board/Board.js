@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
    async.waterfall([
       function(cb) {
          var userId = req.query.userId;
-         if(userId)
+         if (userId)
             cnn.chkQry('select * from Board where prId = ?', 
              [userId], cb);
          else {
@@ -36,8 +36,7 @@ router.get('/:id', function(req, res) {
    var vld = req.validator;
    async.waterfall([
       function(cb) {
-            cnn.chkQry('select * from Board where id = ?', 
-             [entId], cb);
+         cnn.chkQry('select * from Board where id = ?', [entId], cb);
       }, 
       function(existingEnt, fields, cb) {
          if (vld.check(existingEnt.length, Tags.notFound, null, cb)) {
@@ -72,9 +71,9 @@ router.post('/', function(req, res) {
    function(cb) {
       if (vld.chain(body.bName, Tags.missingField, ['bName'], cb)
           .chain(body.heightFT || body.heightFT >= 0, Tags.missingField, 
-            ['heightFT'], cb)
+           ['heightFT'], cb)
           .check(body.heightIN || body.heightIN >= 0, Tags.missingField, 
-            ['heightIN'], cb)
+           ['heightIN'], cb)
           &&
           vld.check(body.bName.length <= nLen, Tags.badValue, ['title'], cb)) {
             cnn.chkQry("insert into Board set ?", body, cb);

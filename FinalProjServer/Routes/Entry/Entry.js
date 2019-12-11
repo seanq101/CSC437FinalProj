@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
    async.waterfall([
       function(cb) {
          var getPublic = req.query.pub;
-         if(!getPublic)
+         if (!getPublic)
             cnn.chkQry('select * from Entry where ownerId = ?', 
              [ssn.prsId], cb);
          else {
