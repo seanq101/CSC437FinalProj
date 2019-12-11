@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Register, SignIn, CnvOverview, CnvDetail, ConfDialog, MyEntsOverview, 
+import {Register, SignIn,  ConfDialog, MyEntsOverview, 
    PubEntsOverview, BoardRoom} 
 from '../components'
 import {Route, Redirect, Switch } from 'react-router-dom';
@@ -94,8 +94,6 @@ class Main extends Component {
                <Route path='/register'
                 render={() => <Register {...this.props} />} />
                 <ProtectedRoute path='/myEnts' component={MyEntsOverview}
-                userOnly={true} {...this.props}/>
-                <ProtectedRoute path={`/CnvDetail/`} component={CnvDetail}
                 userOnly={true} {...this.props}/>
                 <ProtectedRoute path={`/pubEnts/`} component={PubEntsOverview}
                 userOnly={true} {...this.props}/>

@@ -50,7 +50,7 @@ export default class EntItem extends Component {
             <Row hidden={this.state.isHidden}>
                <Col sm={4}>
                   {this.props.picURL ? 
-                     <img className="surfing-img" src={this.props.picURL}></img> 
+                     <img alt={this.props.title} className="surfing-img" src={this.props.picURL}></img> 
                      : 
                      ''
                   }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, Form, FormGroup, Alert, FormControl } from 'react-bootstrap';
-import DatePicker from "react-datepicker";
+import { Modal, Button, Form, FormGroup, Alert } from 'react-bootstrap';
 import "react-datepicker/dist/react-datepicker.css";
 
 

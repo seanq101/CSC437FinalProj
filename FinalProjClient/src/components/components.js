@@ -1,11 +1,6 @@
 export {default as SignIn} from './SignIn/SignIn';
 export {default as Register} from './Register/Register';
-export {default as CnvOverview} from './Cnvs/CnvOverview';
-export {default as CnvModal} from './Cnvs/CnvModal';
 export {default as ConfDialog} from './ConfDialog/ConfDialog';
-export {default as CnvDetail} from './Cnvs/CnvDetail';
-export {default as MsgItem} from './Cnvs/MsgItem';
-export {default as MsgModal} from './Cnvs/MsgModal';
 export {default as MyEntsOverview} from './Ents/MyEntsOverview';
 export {default as PubEntsOverview} from './Ents/PubEntsOverview';
 export {default as EntItem} from './Ents/EntItem';

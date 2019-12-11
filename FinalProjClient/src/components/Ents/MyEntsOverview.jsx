@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {ListGroup, ListGroupItem, Col, Row, Button} from 'react-bootstrap';
+import {ListGroup, Button} from 'react-bootstrap';
 import {ConfDialog, EntItem} from '../components';
 import EntModal from './EntModal';
 import './Ent.css';
@@ -41,10 +40,6 @@ export default class MyEntsOverview extends Component {
       this.setState({ showModal: false });
    }
 
-   modCnv(result) {
-      this.props.modCnv(this.state.editCnv.id, result.title);
-      this.props.updateCnvs();
-   }
 
    newEnt(result) {
       this.props.addEntry(result);

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {ListGroup, ListGroupItem, Col, Row, Button} from 'react-bootstrap';
+import {ListGroup} from 'react-bootstrap';
 import {ConfDialog, EntItem} from '../components';
 import './Ent.css';
 
