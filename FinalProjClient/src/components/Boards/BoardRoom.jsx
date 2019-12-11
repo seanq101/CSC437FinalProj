@@ -10,7 +10,7 @@ export default class BoardRoom extends Component {
       this.props.getBoards(this.props.Prss.id,
          boardsList => {
             let boardDict = {};
-            this.props.getMyEntries(this.props.Prss.id, 
+            this.props.getMyEntries( 
                entsList => {
                   entsList = entsList.ents;
                   console.log('entsList',entsList)

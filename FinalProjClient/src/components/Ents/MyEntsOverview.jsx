@@ -9,10 +9,19 @@ import './Ent.css';
 export default class MyEntsOverview extends Component {
    constructor(props) {
       super(props);
-      this.props.getMyEntries();
+      this.props.getMyEntries(
+         ents => {
+            this.props.getBoards(this.props.Prss.id,
+               boards => {
+                  this.setState({'boards': boards})
+               })
+         }
+      );
+
       this.state = {
          showModal: false,
          showConfirmation: false,
+         boards: []
       }
    }
 
@@ -81,6 +90,7 @@ export default class MyEntsOverview extends Component {
                whenSurfed={ent.whenSurfed}
                picURL={ent.picURL}
                id={ent.id}
+               
                showControls={ent.ownerId === this.props.Prss.id || 
                 this.props.Prss.role === 1}
                onDelete={() => this.openConfirmation(ent)}
@@ -99,7 +109,8 @@ export default class MyEntsOverview extends Component {
             {/* Modal for creating and change cnv */}
             <EntModal
                showModal={this.state.showModal}
-               onDismiss={this.modalDismiss} />
+               onDismiss={this.modalDismiss} 
+               boards={this.state.boards.boards}/>
             
             <ConfDialog
                show={this.state.showConfirmation}

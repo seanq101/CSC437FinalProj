@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {ListGroup, ListGroupItem, Col, Row, Button} from 'react-bootstrap';
 import {ConfDialog, EntItem} from '../components';
-import EntModal from './EntModal';
 import './Ent.css';
 
 
@@ -96,12 +95,9 @@ export default class PubEntsOverview extends Component {
             <ListGroup className="padded">
                {entries}
             </ListGroup>
-            <Button variant="primary" onClick=
-               {() => this.openModal()}>New Entry</Button>
-            {/* Modal for creating and change cnv */}
-            <EntModal
-               showModal={this.state.showModal}
-               onDismiss={this.modalDismiss} />
+    
+           
+            
             
             <ConfDialog
                show={this.state.showConfirmation}

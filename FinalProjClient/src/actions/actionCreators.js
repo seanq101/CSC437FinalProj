@@ -89,9 +89,9 @@ export function getPerson(prsId, cb) {
    }; 
 }
 
-export function getMyEntries(prsId, cb) {
+export function getMyEntries(cb) {
    return (dispatch, prevState) => {
-      api.getMyEnts(prsId)
+      api.getMyEnts()
       .then(res => dispatch({type: 'GET_ENTS', ents : res}))
       .then(res => {if (cb) cb(res);});
    }; 

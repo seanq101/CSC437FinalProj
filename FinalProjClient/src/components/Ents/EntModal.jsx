@@ -34,7 +34,8 @@ export default class EntModal extends Component {
          loc: '',
          pub: 0,
          whenSurfed: 0,
-         userName: ''
+         userName: '',
+         boardId: 0
       }
       this.handleChange = this.handleChange.bind(this);
    }
@@ -58,7 +59,8 @@ export default class EntModal extends Component {
             
             break;
          default:
-            if(ev.target.id === 'waveHeight' || ev.target.id === 'rating')
+            if(ev.target.id === 'waveHeight' || ev.target.id === 'rating' || 
+             ev.target.id === 'boardId')
                newState[ev.target.id] = parseInt(ev.target.value);
             else 
                newState[ev.target.id] = ev.target.value;
@@ -86,7 +88,8 @@ export default class EntModal extends Component {
          pub,
          whenSurfed,
          picURL,
-         userName
+         userName,
+         boardId
       } = this.state;
 
       const newEnt = {
@@ -99,8 +102,12 @@ export default class EntModal extends Component {
          pub,
          whenSurfed,
          picURL,
-         userName
+         userName,
+         boardId
       };
+
+      if (newEnt.boardId === 0)
+         newEnt.boardId = this.props.boards[0].id;
       console.log("props: ", this.props);
       newEnt.picURL = newEnt.picURL === undefined ? null : newEnt.picURL;
       console.log('newEnt: ', newEnt);
@@ -115,6 +122,13 @@ export default class EntModal extends Component {
    }
 
    render() {
+
+      var boardOptions = [];
+      console.log('modal props', this.props)
+      if (this.props.boards && this.props.boards.length > 0){
+         this.props.boards.forEach(board => {boardOptions.push(<option value={board.id}>{board.bName}</option>)});
+      }
+      
       return (
          <Modal show={this.props.showModal} onHide={() => this.close("Cancel")}>
             <Modal.Header closeButton>
@@ -168,6 +182,12 @@ export default class EntModal extends Component {
                       onChange={this.handleChange} required={true}
                       />
 
+                     <div className="form-group">
+                        <label htmlFor="select1">Which Board Did You Use</label>
+                        <select value={this.state.value} id="boardId" onChange={this.handleChange} className="form-control"> 
+                           {boardOptions}
+                        </select>
+                     </div>
                      <Form.Label>Date of Surf</Form.Label>
                      <br></br>
                      <DatePicker

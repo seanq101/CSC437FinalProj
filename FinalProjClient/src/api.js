@@ -129,7 +129,7 @@ export function getCnvs(userId) {
     .catch(err => {throw err})
 }
 
-export function getMyEnts(userId) {
+export function getMyEnts() {
     return get("Entry")
     .then((res) => res.json())
     .catch(err => {throw err})
